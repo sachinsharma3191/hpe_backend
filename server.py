@@ -46,5 +46,11 @@ def test_results():
     return Response(json.dumps(response, cls=UUIDEncoder), status=200, mimetype='application/json')
 
 
+@app.route("/allTests")
+def all_test_results():
+    response = service.get_all_test_results()
+    return Response(json.dumps(response, cls=UUIDEncoder), status=200, mimetype='application/json')
+
+
 if __name__ == "__main__":
     app.run(debug=True)

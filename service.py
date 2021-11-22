@@ -123,7 +123,8 @@ def get_test_results(test_handle_id):
             return {"message ": "Test in Progress"}
 
         test_results = []
-        results = tests_collections.find({"test_handle_id": UUID(test_handle_id)}, {"_id": 0 , "test_id": 0, "test_handle_id": 0})
+        results = tests_collections.find({"test_handle_id": UUID(test_handle_id)},
+                                         {"_id": 0, "test_id": 0, "test_handle_id": 0})
         for e in results:
             print(e)
             test_results.append(e)
@@ -131,3 +132,15 @@ def get_test_results(test_handle_id):
     except Exception as e:
         print("An exception occurred", e)
         return {"message": "Unable to retrieve test results of " + test_handle_id}
+
+
+def get_all_test_results():
+    try:
+        test_results = []
+        results = website_collection.find({}, {"_id": 0})
+        for e in results:
+            test_results.append(e)
+        return test_results
+    except Exception as e:
+        print("An exception occurred", e)
+        return {"message": "Unable to retrieve all test results of "}
